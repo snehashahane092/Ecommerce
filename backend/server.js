@@ -8,15 +8,22 @@ const userRoutes = require('./routes/userRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 
 const app = express();
-const PORT = 5000; // Hardcoded to 5000
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: process.env.NODE_ENV === 'production' ? process.env.CLIENT_URL : '*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Log environment for debugging
+console.log('Environment:', {
+  NODE_ENV: process.env.NODE_ENV,
+  PORT: PORT,
+  CLIENT_URL: process.env.CLIENT_URL || 'Not set'
+});
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(morgan('dev'));

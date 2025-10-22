@@ -1,9 +1,11 @@
 import axios from 'axios';
 import config from '../config/config';
 
-// Ensure API_URL is always defined, fallback to default if missing
-const fallbackApiUrl = 'http://localhost:5001/api';
-const API_URL = (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) || config.API_URL || fallbackApiUrl;
+// Use config.API_URL which already handles environment variables properly
+const API_URL = config.API_URL;
+
+// Log API URL for debugging
+console.log('API URL being used:', API_URL);
 
 // Create axios instance
 const api = axios.create({
@@ -28,6 +30,22 @@ api.interceptors.request.use(
 );
 
 // Response interceptor to handle errors
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    console.error('API Error:', error.response?.data || error.message);
+    
+    // Handle authentication errors
+    if (error.response && error.response.status === 401) {
+      // Clear invalid tokens on auth failure
+      localStorage.removeItem('user');
+    }
+    
+    return Promise.reject(error);
+  }
+);
 api.interceptors.response.use(
   (response) => response,
   (error) => {
