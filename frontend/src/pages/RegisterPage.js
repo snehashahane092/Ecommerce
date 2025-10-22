@@ -42,9 +42,17 @@ const RegisterPage = () => {
     }
     
     try {
-      await register(name, email, password);
-      navigate('/');
+      console.log('Attempting registration...');
+      const result = await register(name, email, password);
+      console.log('Registration successful:', result);
+      
+      // Add a small delay before navigation to ensure state is updated
+      setTimeout(() => {
+        console.log('Navigating to home page...');
+        navigate('/', { replace: true });
+      }, 500);
     } catch (err) {
+      console.error('Registration error:', err);
       setError(err.response?.data?.message || 'Registration failed. Please try again.');
     }
   };
