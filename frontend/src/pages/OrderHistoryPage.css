@@ -1,0 +1,90 @@
+.order-history-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  min-height: 80vh;
+}
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+}
+.order-card {
+  background: var(--surface-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+}
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-lg);
+  gap: var(--spacing-md);
+}
+.order-status {
+  padding: 4px 12px;
+  border-radius: var(--radius);
+  font-size: var(--font-size-sm);
+  color: var(--light-text);
+}
+.order-status.delivered {
+  background: var(--secondary-color);
+}
+.order-status.pending {
+  background: var(--primary-color);
+}
+.order-date {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+.order-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+}
+.order-product {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  background: var(--background-color);
+  border-radius: var(--radius);
+  padding: var(--spacing-md);
+  min-width: 220px;
+  box-shadow: var(--shadow-sm);
+}
+.order-product-image {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--surface-color);
+  box-shadow: var(--shadow-sm);
+}
+.product-name {
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 4px;
+}
+.product-qty, .product-price {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+.order-total {
+  margin-top: var(--spacing-lg);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-color);
+  text-align: right;
+}
+.no-orders {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--font-size-lg);
+  padding: var(--spacing-2xl) 0;
+}
